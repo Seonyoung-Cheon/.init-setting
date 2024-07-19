@@ -68,7 +68,7 @@ set background=dark
 " set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 " set termguicolors
 " set runtimepath+=~/.vim/bundle/auto-pairs
-" set encoding=utf-8
+set encoding=utf-8
 " set fileencodings=utf-8
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
