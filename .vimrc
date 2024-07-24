@@ -57,7 +57,7 @@ set smartindent
 " set tabstop=2
 " set expandtab
 " set ruler
-" set incsearch
+set incsearch
 set background=dark
 " set foldenable
 " set foldlevelstart=10
