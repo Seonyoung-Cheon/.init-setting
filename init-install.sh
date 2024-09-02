@@ -4,10 +4,6 @@
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 git clone https://github.com/morhetz/gruvbox.git ~/.vim/plugged/gruvbox
 vim -c 'PlugInstall' -c 'qa!'
-export TERM=xterm-256color
-cd ~/.vim/plugged/YouCompleteMe
-python3 install.py --clangd-completer
-cd ~
 
 ### tmux conf setting
 # Install tmux tpm if it is not installed

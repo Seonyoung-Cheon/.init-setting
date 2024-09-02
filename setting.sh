@@ -7,6 +7,12 @@ cp ~/.init-setting/.vim/syntax ~/.vim/ -r
 ### vim setting
 vim -c 'PlugInstall' -c 'qa!'
 export TERM=xterm-256color
+cd ~/.vim/plugged/YouCompleteMe
+python3 install.py --clangd-completer
+cd ~
+
+
+export TERM=xterm-256color
 
 ### tmux conf setting
 cp ~/.init-setting/.tmux.conf ~/.tmux.conf
