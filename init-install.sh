@@ -18,9 +18,6 @@ cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autojump
 python3 ./install.py
 cd ~
 
-source $ZSH/oh-my-zsh.sh
-source ~/.zshrc
-
 ### powerlevel 10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 cp ~/.init-setting/.p10k.zsh ~/.p10k.zsh
@@ -28,6 +25,8 @@ cp ~/.init-setting/.p10k.zsh ~/.p10k.zsh
 
 ### tmux conf setting
 sudo apt-get install -y tmux
+cp ~/.init-setting/.tmux.conf ~/.tmux.conf
+tmux source-file ~/.tmux.conf
 
 # Install tmux tpm if it is not installed
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
@@ -35,6 +34,5 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-cp ~/.init-setting/.tmux.conf ~/.tmux.conf
-tmux source-file ~/.tmux.conf
+source ~/.zshrc
 
