@@ -22,10 +22,11 @@ Plug 'mbbill/undotree'
 Plug 'antiagainst/vim-tablegen'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'tc50cal/vim-terminal'
+Plug 'rhysd/vim-clang-format'
 
 
 call plug#end()
-filetype plugin indent on
+" filetype plugin indent on
 
 " set shell=/bin/zsh
 set hlsearch
@@ -35,7 +36,7 @@ set hlsearch
 set nu
 " set ts=2
 " set sts=2
-set sw=2
+" set sw=4
 " set autowrite
 " set autoread
 " set cindent
@@ -52,7 +53,7 @@ set sw=2
 " " set formatoptions-=p
 " set smartcase
 " set smarttab
-set smartindent
+" set smartindent
 " set softtabstop=2
 " set tabstop=2
 " set expandtab
@@ -75,37 +76,37 @@ colorscheme gruvbox
 " set wrapmargin=0
 " set textwidth=0
 " set formatoptions-=t
-" set nowrap
+set nowrap
 
 
 au BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \ exe "norm g`\"" |
-      \ endif
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\ exe "norm g`\"" |
+			\ endif
 if $LANG[0]=='k' && $LANG[1]=='o'
-  set fileencoding=korea
+	set fileencoding=korea
 endif
 
 if has("syntax")
-  syntax on
+	syntax on
 endif
 
 if has('python3')
-  python3 import sys
+	python3 import sys
 endif
 
 if has("persistent_undo")
-  let target_path = expand('~/.undodir')
-  " create the directory and any parent directories
-  " if the location does not exist.
-  if !isdirectory(target_path)
-    call mkdir(target_path, "p", 0700)
-  endif
+	let target_path = expand('~/.undodir')
+	" create the directory and any parent directories
+	" if the location does not exist.
+	if !isdirectory(target_path)
+		call mkdir(target_path, "p", 0700)
+	endif
 
-  let &undodir=target_path
-  set undofile
-  set undolevels=500                      " max undos stored
-  set undoreload=10000
+	let &undodir=target_path
+	set undofile
+	set undolevels=500                      " max undos stored
+	set undoreload=10000
 endif
 
 "powerline setting
@@ -122,12 +123,15 @@ autocmd BufNewFile,BufRead *.rst setlocal filetype=rest
 
 nmap <F9> :rightb term<CR>
 nmap <F10> :rightb vert term<CR>
-"let g:formatterpath = ['/usr/bin/clang-format-10']
-let g:formatterpath = ['/usr/lib/llvm-14/bin']
-noremap <F3> : Autoformat<CR>
+let g:formatterpath = ['/usr/bin/clang-format-10']
+" let g:formatterpath = ['/usr/lib/llvm-14/bin']
+" noremap <F3> : Autoformat<CR>
 let ftexclude = ['python', 'markdown', 'text', 'llvm']
 " au BufWrite * :Autoformat
 let g:leave_my_textwidth_alone=1
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 au BufWrite * if index(ftexclude, &ft) < 0 | :Autoformat
 " autocmd BufWrite *.md set noautoindent nosmartindent noautowrite nosmarttab
 
@@ -187,7 +191,7 @@ nmap <F8> :NERDTreeToggle<CR>
 " let g:NERDTreeGitStatusShowClean = 1 " default: 0
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-      \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+			\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -195,3 +199,5 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 autocmd FileType vim let g:AutoPairs = {}
 autocmd FileType markdown let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '```':'```', '"""':'"""', "'''":"'''"}
 
+" auto-enabling auto formatting
+autocmd FileType c, cpp, cuda ClangFormatAutoEnable
