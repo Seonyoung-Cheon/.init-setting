@@ -7,7 +7,7 @@ call plug#begin()
 " Plugin 'VundleVim/Vundle.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdtree'
-Plug 'Chiel92/vim-autoformat'
+Plug 'vim-autoformat/vim-autoformat'
 Plug 'tpope/vim-commentary'
 Plug 'yssl/AutoCWD.vim'
 Plug 'vim-airline/vim-airline'
@@ -26,11 +26,11 @@ Plug 'rhysd/vim-clang-format'
 
 
 call plug#end()
-" filetype plugin indent on
+filetype plugin indent on
 
 " set shell=/bin/zsh
 set hlsearch
-" " set autoindent
+" set autoindent
 " set scrolloff=2
 " set wildmode=longest,list
 set nu
@@ -123,16 +123,20 @@ autocmd BufNewFile,BufRead *.rst setlocal filetype=rest
 
 nmap <F9> :rightb term<CR>
 nmap <F10> :rightb vert term<CR>
-let g:formatterpath = ['/usr/bin/clang-format-10']
-" let g:formatterpath = ['/usr/lib/llvm-14/bin']
+
+
+" Set Autoformatter
+let g:formatterpath = ['/usr/bin/clang-format-14']
 " noremap <F3> : Autoformat<CR>
-let ftexclude = ['python', 'markdown', 'text', 'llvm']
 " au BufWrite * :Autoformat
-let g:leave_my_textwidth_alone=1
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-au BufWrite * if index(ftexclude, &ft) < 0 | :Autoformat
+" let g:leave_my_textwidth_alone=1
+" let g:autoformat_autoindent = 0
+" let g:autoformat_retab = 0
+" let g:autoformat_remove_trailing_spaces = 0
+" let ftexclude = ['python', 'markdown', 'text', 'llvm']
+" au BufWrite * if index(ftexclude, &ft) < 0 | :Autoformat
+let extexclude = ['py', 'md', 'txt']
+au BufWrite * if index(extexclude, expand('%:e')) < 0 | :Autoformat
 " autocmd BufWrite *.md set noautoindent nosmartindent noautowrite nosmarttab
 
 let g:ycm_confirm_extra_conf = 0
@@ -154,6 +158,7 @@ let &rtp .= ',' . expand( '<sfile>:p:h' )
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_enable_inlay_hints = 0
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>d :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
@@ -201,3 +206,4 @@ autocmd FileType markdown let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'
 
 " auto-enabling auto formatting
 autocmd FileType c, cpp, cuda ClangFormatAutoEnable
+
