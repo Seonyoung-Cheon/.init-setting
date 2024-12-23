@@ -145,7 +145,7 @@ let g:ycm_confirm_extra_conf = 0
 set sessionoptions-=blank
 let mapleader=","
 let g:tex_flavor = "latex"
-let g:AutoPairsFlyMode = 1
+" let g:AutoPairsFlyMode = )
 let g:AutoPairsShortcutBackInsert='<C-b>'
 let g:AutoPairsShortcutFastWrap='<C-e>'
 "airline
