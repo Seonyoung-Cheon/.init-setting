@@ -38,6 +38,8 @@ let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set nowrap
 
+" Hidden option can switch terminal session in the buffer
+set hidden
 
 au BufReadPost *
 			\ if line("'\"") > 0 && line("'\"") <= line("$") |
