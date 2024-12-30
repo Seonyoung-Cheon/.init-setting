@@ -7,7 +7,7 @@ call plug#begin()
 " Plugin 'VundleVim/Vundle.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-autoformat/vim-autoformat'
+" Plug 'vim-autoformat/vim-autoformat'
 Plug 'tpope/vim-commentary'
 Plug 'yssl/AutoCWD.vim'
 Plug 'vim-airline/vim-airline'
@@ -30,52 +30,12 @@ filetype plugin indent on
 
 " set shell=/bin/zsh
 set hlsearch
-" set autoindent
-" set scrolloff=2
-" set wildmode=longest,list
 set nu
-" set ts=2
-" set sts=2
-" set sw=4
-" set autowrite
-" set autoread
-" set cindent
-" set bs=eol,start,indent
-" set history=256
-" set laststatus=2
-" " set paste
-" " set shiftwidth=2
-" set showmatch
-" " set formatoptions-=c
-" " set formatoptions-=l
-" " set formatoptions-=b
-" " set formatoptions-=1
-" " set formatoptions-=p
-" set smartcase
-" set smarttab
-" set smartindent
-" set softtabstop=2
-" set tabstop=2
-" set expandtab
-" set ruler
 set incsearch
 set background=dark
-" set foldenable
-" set foldlevelstart=10
-" set foldnestmax=10
-" set foldmethod=syntax
-" set completeopt-=preview
-" set t_Co=256
-" set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
-" set termguicolors
-" set runtimepath+=~/.vim/bundle/auto-pairs
 set encoding=utf-8
-" set fileencodings=utf-8
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
-" set wrapmargin=0
-" set textwidth=0
-" set formatoptions-=t
 set nowrap
 
 
@@ -95,6 +55,8 @@ if has('python3')
 	python3 import sys
 endif
 
+
+" Persistent_undo setting
 if has("persistent_undo")
 	let target_path = expand('~/.undodir')
 	" create the directory and any parent directories
@@ -124,20 +86,9 @@ autocmd BufNewFile,BufRead *.rst setlocal filetype=rest
 nmap <F9> :rightb term<CR>
 nmap <F10> :rightb vert term<CR>
 
-
-" Set Autoformatter
-let g:formatterpath = ['/usr/bin/clang-format-14']
-" noremap <F3> : Autoformat<CR>
-" au BufWrite * :Autoformat
-" let g:leave_my_textwidth_alone=1
-" let g:autoformat_autoindent = 0
-" let g:autoformat_retab = 0
-" let g:autoformat_remove_trailing_spaces = 0
-" let ftexclude = ['python', 'markdown', 'text', 'llvm']
-" au BufWrite * if index(ftexclude, &ft) < 0 | :Autoformat
+" Setting ClangFormat every buffer write
 let extexclude = ['py', 'md', 'txt']
-au BufWrite * if index(extexclude, expand('%:e')) < 0 | :Autoformat
-" autocmd BufWrite *.md set noautoindent nosmartindent noautowrite nosmarttab
+au BufWrite * if index(extexclude, expand('%:e')) < 0 | :ClangFormatAutoEnable
 
 let g:ycm_confirm_extra_conf = 0
 
@@ -204,6 +155,4 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 autocmd FileType vim let g:AutoPairs = {}
 autocmd FileType markdown let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '```':'```', '"""':'"""', "'''":"'''"}
 
-" auto-enabling auto formatting
-autocmd FileType c, cpp, cuda ClangFormatAutoEnable
 
