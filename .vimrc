@@ -37,6 +37,7 @@ set encoding=utf-8
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set nowrap
+" set formatoptions
 
 " Hidden option can switch terminal session in the buffer
 set hidden
@@ -79,6 +80,9 @@ set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 
+" Setting Commentary Format for specifie file type
+autocmd FileType c,cpp,cuda setlocal commentstring=//\ %s 
+" autocmd FileType c,cpp,cuda let b:commentary_format = '// %s'
 " autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd BufNewFile,BufRead *.td setlocal filetype=tablegen
