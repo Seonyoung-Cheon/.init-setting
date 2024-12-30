@@ -37,7 +37,11 @@ set encoding=utf-8
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set nowrap
-" set formatoptions
+
+"remove auto wrap 
+set formatoptions-=t
+"remove auto wrap for comment
+set formatoptions-=c
 
 " Hidden option can switch terminal session in the buffer
 set hidden
@@ -92,10 +96,6 @@ autocmd BufNewFile,BufRead *.rst setlocal filetype=rest
 nmap <F9> :rightb term<CR>
 nmap <F10> :rightb vert term<CR>
 
-" Setting ClangFormat every buffer write
-let extexclude = ['py', 'md', 'txt']
-au BufWrite * if index(extexclude, expand('%:e')) < 0 | :ClangFormatAutoEnable
-
 let g:ycm_confirm_extra_conf = 0
 
 " set viewoptions-=curdir
@@ -109,6 +109,13 @@ let g:AutoPairsShortcutFastWrap='<C-e>'
 " let g:airline_theme='powerlineish'
 let g:airline_theme='bubblegum'
 "let g:airline_powerline_fonts = 1
+
+" Setting ClangFormat every buffer write
+autocmd FileType c,cpp,cuda nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,cuda vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" If you want to apply clangformat every bufferwrite, use next two line 
+" let extexclude = ['py', 'md', 'txt']
+" au BufWrite * if index(extexclude, expand('%:e')) < 0 | :ClangFormatAutoEnable
 
 " You Complete Me
 let &rtp .= ',' . expand( '<sfile>:p:h' )
