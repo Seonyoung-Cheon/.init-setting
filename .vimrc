@@ -29,6 +29,13 @@ call plug#end()
 filetype plugin indent on
 
 " set shell=/bin/zsh
+" setting tab stop
+set smartindent
+set tabstop=4
+set expandtab
+set shiftwidth=4
+
+
 set hlsearch
 set nu
 set incsearch
@@ -44,7 +51,7 @@ set formatoptions-=t
 set formatoptions-=c
 
 " Hidden option can switch terminal session in the buffer
-set hidden
+" set hidden
 
 au BufReadPost *
 			\ if line("'\"") > 0 && line("'\"") <= line("$") |
