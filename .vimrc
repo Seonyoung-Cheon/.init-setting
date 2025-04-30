@@ -29,6 +29,10 @@ call plug#end()
 filetype plugin indent on
 
 " set shell=/bin/zsh
+set tabstop=4       " 탭 문자 하나가 차지하는 칸 수 (화면에서의 너비)
+set shiftwidth=4    " autoindent (예: >>, <<) 시 사용할 공백 수
+set softtabstop=4   " <Tab> 키를 눌렀을 때 입력될 공백 수
+set expandtab       " 탭 문자를 공백으로 변환
 set hlsearch
 set nu
 set incsearch
