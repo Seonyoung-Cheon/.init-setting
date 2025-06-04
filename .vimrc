@@ -47,8 +47,8 @@ set formatoptions-=t
 "remove auto wrap for comment
 set formatoptions-=c
 
-" Hidden option can switch terminal session in the buffer
-set hidden
+" Hidden option can switch terminal session in the buffer : should be unset
+" set hidden
 
 au BufReadPost *
 			\ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -117,6 +117,7 @@ let g:airline_theme='bubblegum'
 " Setting ClangFormat every buffer write
 autocmd FileType c,cpp,cuda nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,cuda vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
 " If you want to apply clangformat every bufferwrite, use next two line 
 " let extexclude = ['py', 'md', 'txt']
 " au BufWrite * if index(extexclude, expand('%:e')) < 0 | :ClangFormatAutoEnable
