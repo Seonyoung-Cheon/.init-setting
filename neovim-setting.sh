@@ -142,6 +142,18 @@ else
 fi
 
 # ----------------------------------------
+# Install mypy via pip if not installed
+# ----------------------------------------
+
+if ! pip show mypy > /dev/null 2>&1; then
+    echo "Installing cmakelang via pip..."
+    pip install mypy
+else
+    echo "cmakelang already installed."
+fi
+
+
+# ----------------------------------------
 # Install Mason packages in Neovim
 # ----------------------------------------
 
