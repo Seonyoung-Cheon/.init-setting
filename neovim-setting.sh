@@ -1,4 +1,5 @@
 #!/usr/bin/zsh
+# You should change the shebang to `#!/usr/bin/env zsh` if you want to run this script in a different environment.
 
 set -e  # Exit immediately if a command exits with a non-zero status
 
@@ -7,6 +8,9 @@ set -e  # Exit immediately if a command exits with a non-zero status
 # ----------------------------------------
 echo "Copying nvim configuration files to ~/.config/nvim..."
 cp -r ./nvim ~/.config/nvim
+
+cp ~/.init-setting/.tmux.conf ~/.tmux.conf
+tmux source-file ~/.tmux.conf
 
 # ----------------------------------------
 # Check current Neovim version

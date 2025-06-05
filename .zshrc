@@ -89,10 +89,13 @@ source $ZSH/oh-my-zsh.sh
 export CC="clang"
 export CXX="clang++"
 
-export PATH="/usr/lib/ccache:/usr/local/cuda/bin:$PATH:~/.local/bin"
+export PATH="/usr/lib/ccache:/usr/local/cuda/bin:$HOME/.local/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-export LLVM_SYMBOLIZER_PATH="/home/seonyoung/workspace/llvm-project/bin/llvm-symbolizer"
+export LLVM_SYMBOLIZER_PATH="/$HOME/workspace/llvm-project/bin/llvm-symbolizer"
 export CMAKE_GENERATOR=Ninja
+
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # export HECATE="/home/seonyoung/workspace/hecate"
@@ -123,7 +126,6 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias helios='ssh -p 20202 seonyoung@165.132.56.208'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
