@@ -1,8 +1,15 @@
 # Initial Setting
 
 ./init-install.sh
-./setting.sh
+./neovim-setting.sh
 
+// vim-setting is deprecated
+
+# User should modify theses
+* llvm-project location in ~/.config/nvim/lua/plugins/lspconfig.lua\
+  1) vim.fn.expand("$HOME/llvm-project/bin/mlir-lsp-server") },\
+  2) vim.fn.expand("$HOME/llvm-project/bin/tblgen-lsp-server"),
+ 
 
 # Commands
 --------
@@ -21,9 +28,9 @@
 | Git Commands          | Refer to site	| [Shortcuts](https://cheatography.com/isaacnewton/cheat-sheets/fugitive/)       | tpope/vim-fugitive  |
 | `:ClangFormat`        | `,cf`		| Apply ClangFormat to Current Buffer(file) - normal mode           | rhysd/vim-clang-format  |
 | `:<, >ClangFormat`    | `,cf`		| Apply ClangFormat to Selected Lines - visual mode                 | rhysd/vim-clang-format  |
-| `:YcmCompleter GoTo`  | `,g`		| Go to Definition - normal mode		                    | ycm-core/youcompleteme  |
+| `:YcmCompleter GoTo`  | `gd`		| Go to Definition - normal mode		                    | ycm-core/youcompleteme  |
 | Back			| `ctrl + o`    | Return from definition - normal mode		                    |  - |
-| `:NerdTreeToggle`     | `,n` or F8    | Open NerdTree on side		                    		    | preservim/nerdtree |
+| `:NerdTreeToggle`     | `,n`    | Open NerdTree on side		                    		    | preservim/nerdtree |
 | `:NerdTreeRefreshRoot`| `,r` 	        | Refresh NerdTree		                    		    | preservim/nerdtree |
 
 
