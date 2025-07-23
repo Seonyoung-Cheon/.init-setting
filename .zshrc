@@ -94,10 +94,12 @@ export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 export LLVM_SYMBOLIZER_PATH="/$HOME/workspace/llvm-project/bin/llvm-symbolizer"
 export CMAKE_GENERATOR=Ninja
 
+export GEMINI_API_KEY=""
+
+
 export EDITOR="nvim"
 export VISUAL="nvim"
-
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+alias gemini="$HOME/.local/lib/gemini-cli/node_modules/.bin/gemini"
 # export HECATE="/home/seonyoung/workspace/hecate"
 # User configuration
 

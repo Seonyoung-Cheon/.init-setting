@@ -7,18 +7,19 @@ set -e  # Exit immediately if a command exits with a non-zero status
 # Copy nvim directory to config 
 # ----------------------------------------
 echo "Copying nvim configuration files to ~/.config/nvim..."
+mkdir ~/.config
 cp -r ./nvim ~/.config/nvim
 
 # ----------------------------------------
 # Install Neovim if needed
 # ----------------------------------------
 
-    echo "Downloading Neovim..."
-    wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz
+echo "Downloading Neovim..."
+wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz
 
-    echo "Extracting Neovim..."
-    tar -xvf nvim-linux-x86_64.tar.gz
-    rm nvim-linux-x86_64.tar.gz
+echo "Extracting Neovim..."
+tar -xvf nvim-linux-x86_64.tar.gz
+rm nvim-linux-x86_64.tar.gz
 
 # ----------------------------------------
 # Set Neovim as default editor and vim alternative
@@ -107,6 +108,17 @@ $(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "MasonInstall lua-language-serve
 
 # echo "Launching Neovim for Copilot authentication..."
 # nvim "+Copilot auth" +qa
-#
+
+# ----------------------------------------
+# Install GEMINI-CLI
+# ----------------------------------------
+echo "Installing GEMINI-CLI"
+cd ~/.local/lib
+git clone https://github.com/google-gemini/gemini-cli
+cd gemini-cli
+make install
+echo "You can use gemini by typing "gemini chat" command, should export API KEY "
+
+
 echo "✅ All setup completed successfully."
 

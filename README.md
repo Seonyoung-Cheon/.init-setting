@@ -1,6 +1,7 @@
 # Initial Setting
 
 ./init-install.sh
+./zsh-setting.sh
 ./neovim-setting.sh
 
 // vim-setting is deprecated
