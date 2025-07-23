@@ -9,71 +9,16 @@ set -e  # Exit immediately if a command exits with a non-zero status
 echo "Copying nvim configuration files to ~/.config/nvim..."
 cp -r ./nvim ~/.config/nvim
 
-cp ~/.init-setting/.tmux.conf ~/.tmux.conf
-tmux source-file ~/.tmux.conf
-
-# ----------------------------------------
-# Check current Neovim version
-# ----------------------------------------
-
-install_nvim=false
-if command -v nvim >/dev/null; then
-    # Get full version string like "NVIM v0.9.5" or "NVIM v0.11.0"
-    version_string=$(nvim --version | head -n 1)
-
-    # Extract major and minor version
-    version_number=$(echo "$version_string" | sed -n 's/^NVIM v\([0-9]\+\)\.\([0-9]\+\).*/\1 \2/p')
-    major=$(echo "$version_number" | awk '{print $1}')
-    minor=$(echo "$version_number" | awk '{print $2}')
-
-    if [ -n "$major" ] && [ -n "$minor" ]; then
-        if [ "$major" -gt 0 ] || [ "$minor" -ge 9 ]; then
-            echo "✅ Neovim version is already v$major.$minor (>= v0.9). Skipping installation."
-            install_nvim=false
-        else
-            echo "⚠️ Neovim version is v$major.$minor (< v0.9). Will install newer version..."
-            install_nvim=true
-        fi
-    else
-        echo "⚠️ Could not parse Neovim version. Will reinstall just in case..."
-        install_nvim=true
-    fi
-else
-    echo "⚠️ Neovim is not installed. Will install Neovim v0.11.1..."
-    install_nvim=true
-fi
-
 # ----------------------------------------
 # Install Neovim if needed
 # ----------------------------------------
 
-if [ "$install_nvim" = true ]; then
     echo "Downloading Neovim..."
     wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz
 
     echo "Extracting Neovim..."
     tar -xvf nvim-linux-x86_64.tar.gz
     rm nvim-linux-x86_64.tar.gz
-
-    # Add alias to .zshrc if not already present
-    if ! grep -q 'alias nvim=' ~/.zshrc; then
-        echo 'alias nvim="$(pwd)/nvim-linux-x86_64/bin/nvim"' >> ~/.zshrc
-        echo "Alias for nvim added to .zshrc"
-    fi
-
-    # Refresh shell
-    source ~/.zshrc
-
-    # Verify Neovim version
-    echo "Checking Neovim version..."
-    nvim_version=$($(pwd)/nvim-linux-x86_64/bin/nvim --version | head -n 1)
-    if [[ "$nvim_version" == *"v0.11."* ]]; then
-        echo "✅ Neovim v0.11 installed successfully."
-    else
-        echo "❌ Failed to install Neovim v0.11."
-        exit 1
-    fi
-fi
 
 # ----------------------------------------
 # Set Neovim as default editor and vim alternative
@@ -160,8 +105,8 @@ fi
 echo "Installing Mason packages in Neovim..."
 $(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "MasonInstall lua-language-server cmake-language-server json-lsp pyright" +qa
 
-echo "Launching Neovim for Copilot authentication..."
-nvim "+Copilot auth" +qa
-
+# echo "Launching Neovim for Copilot authentication..."
+# nvim "+Copilot auth" +qa
+#
 echo "✅ All setup completed successfully."
 
