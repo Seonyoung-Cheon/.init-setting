@@ -109,16 +109,6 @@ $(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "MasonInstall lua-language-serve
 # echo "Launching Neovim for Copilot authentication..."
 # nvim "+Copilot auth" +qa
 
-# ----------------------------------------
-# Install GEMINI-CLI
-# ----------------------------------------
-echo "Installing GEMINI-CLI"
-cd ~/.local/lib
-git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-make install
-echo "You can use gemini by typing "gemini chat" command, should export API KEY "
-
 
 echo "✅ All setup completed successfully."
 
