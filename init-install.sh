@@ -19,9 +19,10 @@ if [[ ! -d ~/.tmux/plugins/tpm ]]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-### zsh setting
-cp ~/.init-setting/.zshrc ~/.zshrc
-chsh -s /bin/zsh
+chsh -s /usr/bin/zsh
 
-echo "* Please Re-enter the Shell, then execute zsh-setting.sh"
+### zsh setting
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
 
