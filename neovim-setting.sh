@@ -7,7 +7,13 @@ set -e  # Exit immediately if a command exits with a non-zero status
 # Copy nvim directory to config 
 # ----------------------------------------
 echo "Copying nvim configuration files to ~/.config/nvim..."
-mkdir ~/.config
+# Check if ~/.config exists and is a directory
+if [ ! -d "$HOME/.config" ]; then
+  echo "Creating ~/.config directory..."
+  mkdir "$HOME/.config"
+else
+  echo "~/.config already exists. Skipping."
+fi
 cp -r ./nvim ~/.config/nvim
 
 # ----------------------------------------
@@ -44,7 +50,8 @@ sudo update-alternatives --config vim
 # ----------------------------------------
 
 echo "Running :Lazy sync to install plugins..."
-$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "+Lazy! sync" +qa 
+$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "Lazy! sync" -c "qa"
+# $(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "+Lazy! sync" +qa 
 
 # ----------------------------------------
 # Check and install Node.js >= v20, npm >= v9
