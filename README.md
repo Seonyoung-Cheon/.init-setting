@@ -1,4 +1,4 @@
-# Initial Setting
+## Initial Setting
 ```
 ./init-install.sh 
 source ./zsh-setting.sh
@@ -7,13 +7,18 @@ source ./zsh-setting.sh
 
 // vim-setting is deprecated
 
-# User should modify theses
+## User should modify these
 * llvm-project location in ~/.config/nvim/lua/plugins/lspconfig.lua\
   1) vim.fn.expand("$HOME/llvm-project/bin/mlir-lsp-server") },\
   2) vim.fn.expand("$HOME/llvm-project/bin/tblgen-lsp-server"),
  
+## Update Plugins
+```
+./update-plugins.sh
+```
 
-# Commands
+
+## Commands
 --------
 
 | Command               | Shortcut	| List                                                              | Plugin            |
