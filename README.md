@@ -2,6 +2,7 @@
 ```
 ./init-install.sh 
 source ./zsh-setting.sh
+cd ~/.init-setting
 ./neovim-setting.sh
 ```
 
@@ -18,7 +19,7 @@ source ./zsh-setting.sh
 ```
 
 
-## Commands
+## Commands (Deprecated)
 --------
 
 | Command               | Shortcut	| List                                                              | Plugin            |
