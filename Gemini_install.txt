@@ -6,6 +6,7 @@ echo "Installing GEMINI-CLI"
 cd ~/.local/lib
 git clone https://github.com/google-gemini/gemini-cli
 cd gemini-cli
+npm run build
 make start 
 
 ### After this step, you should login to your Google account and get the API key
