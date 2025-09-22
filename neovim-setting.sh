@@ -111,7 +111,7 @@ fi
 # ----------------------------------------
 
 echo "Installing Mason packages in Neovim..."
-$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "MasonInstall lua-language-server cmake-language-server json-lsp pyright" +qa
+$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "MasonInstall lua-language-server bash-language-server cmake-language-server clang clangd json-lsp pyright pyright-langserver" +qa
 
 # echo "Launching Neovim for Copilot authentication..."
 # nvim "+Copilot auth" +qa
