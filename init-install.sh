@@ -7,6 +7,8 @@ sudo apt-get -y upgrade
 ### install zsh
 sudo apt-get install -y zsh
 sudo apt install -y curl
+sudo apt install ripgrep
+sudo apt install unzip
 
 ### tmux conf setting
 sudo apt-get install -y tmux
