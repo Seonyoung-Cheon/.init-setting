@@ -40,6 +40,7 @@ cd ~/.init-setting
 | Back			| `ctrl + o`    | Return from definition - normal mode		                    |  - |
 | `:NerdTreeToggle`     | `,n`    | Open NerdTree on side		                    		    | preservim/nerdtree |
 | `:NerdTreeRefreshRoot`| `,r` 	        | Refresh NerdTree		                    		    | preservim/nerdtree |
+| `:Terminal`| `,tt` 	    | Terminal Toggle		                    		    | preservim/nerdtree |
 
 
 --------
