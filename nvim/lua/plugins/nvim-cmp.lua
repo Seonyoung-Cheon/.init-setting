@@ -74,7 +74,7 @@ return {
     cmp.setup.filetype("quarto", {
       sources = cmp.config.sources({
         { name = "otter" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-        { name = "path" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+        { name = "path" },  -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
       }, {
         { name = "buffer" },
       }),
@@ -103,33 +103,33 @@ return {
     -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
     -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-    require("lspconfig")["clangd"].setup({
+    vim.lsp.config["clangd"] = {
       capabilities = capabilities,
-    })
-    -- require("lspconfig")["otter"].setup({
+    }
+    -- vim.lsp.config["otter"].setup({
     --   capabilities = capabilities,
     -- })
     -- require("lpsconfig")["]
-    require("lspconfig")["cmake"].setup({
+    vim.lsp.config["cmake"] = {
       capabilities = capabilities,
-    })
-    require("lspconfig")["jsonls"].setup({
+    }
+    vim.lsp.config["jsonls"] = {
       capabilities = capabilities,
-    })
-    require("lspconfig")["lua_ls"].setup({
+    }
+    vim.lsp.config["lua_ls"] = {
       capabilities = capabilities,
-    })
-    require("lspconfig")["pyright"].setup({
+    }
+    vim.lsp.config["pyright"] = {
       capabilities = capabilities,
-    })
-    require("lspconfig")["mlir_lsp"].setup({
+    }
+    vim.lsp.config["mlir_lsp"] = {
       capabilities = capabilities,
-    })
-    require("lspconfig")["tblgen_lsp"].setup({
+    }
+    vim.lsp.config["tblgen_lsp"] = {
       capabilities = capabilities,
-    })
-    require("lspconfig")["bashls"].setup({
+    }
+    vim.lsp.config["bashls"] = {
       capabilities = capabilities,
-    })
+    }
   end,
 }

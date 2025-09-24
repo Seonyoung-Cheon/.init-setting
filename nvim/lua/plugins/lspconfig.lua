@@ -3,13 +3,16 @@ return {
   "neovim/nvim-lspconfig",
   config = function()
     -- Setup language servers.
-    local lspconfig = require("lspconfig")
+    -- local lspconfig = require("lspconfig")
     -- require("clangd_extensions.inlay_hints").setup_autocmd()
     -- require("clangd_extensions.inlay_hints").set_inlay_hints()
 
     -- lspconfig.setup({ sources = { name = "nvim_lsp_signature_help" } })
-
-    lspconfig.clangd.setup({
+    local caps = vim.lsp.protocol.make_client_capabilities()
+    pcall(function()
+      caps = require("cmp_nvim_lsp").default_capabilities(caps)
+    end)
+    vim.lsp.config['clangd'] = {
       on_attach = function(client, bufnr)
         vim.lsp.inlay_hint.enable(true)
       end,
@@ -25,47 +28,67 @@ return {
         "--function-arg-placeholders",
         "-j12",
       },
-    })
-    lspconfig.pyright.setup({})
-    lspconfig.ts_ls.setup({})
-    lspconfig.yamlls.setup({})
-    lspconfig.lua_ls.setup({})
-    lspconfig.jsonls.setup({})
-    lspconfig.rust_analyzer.setup({
+    }
+
+    vim.lsp.config['pyright'] = {}
+    vim.lsp.config['ts_ls'] = {}
+    vim.lsp.config['yamlls'] = {}
+    vim.lsp.config['lua_ls'] = {}
+    vim.lsp.config['jsonls'] = {}
+    vim.lsp.config['rust_analyzer'] = {
       -- Server-specific settings. See `:help lspconfig-setup`
       settings = {
         ["rust-analyzer"] = {},
       },
-    })
-    lspconfig.bashls.setup({})
-    lspconfig.cmake.setup({})
+    }
+    vim.lsp.config['bashls'] = {}
+    vim.lsp.config['cmake'] = {}
 
-    local configs = require("lspconfig.configs")
-    if not configs.mlir_lsp then
-      configs.mlir_lsp = {
-        default_config = {
-          cmd = { vim.fn.expand("$HOME/llvm-project/bin/mlir-lsp-server") },
-          root_dir = lspconfig.util.root_pattern(".git"),
-          filetypes = { "mlir" },
-        },
-      }
-    end
-    if not configs.tblgen_lsp then
-      configs.tblgen_lsp = {
-        default_config = {
-          root_dir = lspconfig.util.root_pattern(".git"),
-          cmd = {
-            vim.fn.expand("$HOME/llvm-project/bin/tblgen-lsp-server"),
-            "--tablegen-compilation-database=./tablegen_compile_commands.yml",
-          },
-          filetypes = { "tablegen" },
-        },
-      }
-    end
+    -- local configs = require("lspconfig.configs")
+    -- if not configs.mlir_lsp then
+    --   configs.mlir_lsp = {
+    --     default_config = {
+    --       cmd = { vim.fn.expand("$HOME/llvm-project/bin/mlir-lsp-server") },
+    --       root_dir = vim.lsp.config['util'].root_pattern(".git"),
+    --       filetypes = { "mlir" },
+    --     },
+    --   }
+    -- end
+    vim.lsp.config["mlir_lsp"] = {
+      capabilities = caps,
+      cmd = { vim.fn.expand("$HOME/llvm-project/bin/mlir-lsp-server") },
+      filetypes = { "mlir" },
+      root_markers = { ".git" },
+    }
+
+    vim.lsp.config["tblgen_lsp"] = {
+      capabilities = caps,
+      cmd = {
+        vim.fn.expand("$HOME/llvm-project/bin/tblgen-lsp-server"),
+        "--tablegen-compilation-database=./tablegen_compile_commands.yml",
+      },
+      filetypes = { "tablegen" },
+      root_markers = { ".git" },
+    }
+
+    -- if not configs.tblgen_lsp then
+    --   configs.tblgen_lsp = {
+    --     default_config = {
+    --       -- root_dir = lspconfig.util.root_pattern(".git"),
+    --       -- root_dir = vim.lsp.config.util.root_pattern(".git"),
+    --       root_dir = vim.lsp.config['util'].root_pattern(".git"),
+    --       cmd = {
+    --         vim.fn.expand("$HOME/llvm-project/bin/tblgen-lsp-server"),
+    --         "--tablegen-compilation-database=./tablegen_compile_commands.yml",
+    --       },
+    --       filetypes = { "tablegen" },
+    --     },
+    --   }
+    -- end
     -- tblgen-lsp-server
 
-    lspconfig.mlir_lsp.setup({})
-    lspconfig.tblgen_lsp.setup({})
+    vim.lsp.config['mlir_lsp'] = {}
+    vim.lsp.config['tblgen_lsp'] = {}
 
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
