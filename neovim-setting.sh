@@ -60,15 +60,15 @@ $(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "Lazy! sync" -c "qa"
 echo "Checking Node.js version..."
 if command -v node >/dev/null; then
     node_version=$(node -v | cut -d'v' -f2 | cut -d. -f1)
-    if [ "$node_version" -lt 20 ]; then
+    if [ "$node_version" -lt 22 ]; then
         echo "Old Node.js detected. Removing..."
         sudo apt remove -y nodejs npm
     fi
 fi
 
-if ! command -v node >/dev/null || [ "$(node -v | cut -d'v' -f2 | cut -d. -f1)" -lt 20 ]; then
-    echo "Installing Node.js v20..."
-    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+if ! command -v node >/dev/null || [ "$(node -v | cut -d'v' -f2 | cut -d. -f1)" -lt 22 ]; then
+    echo "Installing Node.js v22..."
+    curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
     sudo apt install -y nodejs
 fi
 
