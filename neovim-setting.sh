@@ -77,7 +77,7 @@ fi
 node_version=$(node -v | cut -d'v' -f2)
 npm_version=$(npm -v)
 
-if [[ "$(echo $node_version | cut -d. -f1)" -lt 20 || "$(echo $npm_version | cut -d. -f1)" -lt 9 ]]; then
+if [[ "$(echo $node_version | cut -d. -f1)" -lt 22 || "$(echo $npm_version | cut -d. -f1)" -lt 9 ]]; then
     echo "⚠️ Node.js v20+ and npm v9+ are required. Current: node=$node_version, npm=$npm_version"
 else
     echo "✅ Node.js and npm versions are sufficient."
