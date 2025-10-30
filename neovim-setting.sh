@@ -50,7 +50,7 @@ sudo update-alternatives --config vim
 # ----------------------------------------
 
 echo "Running :Lazy sync to install plugins..."
-$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "Lazy! sync" -c "qa"
+$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "Lazy! restore" -c "qa" 
 # $(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "+Lazy! sync" +qa 
 
 # ----------------------------------------
