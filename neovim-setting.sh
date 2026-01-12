@@ -2,6 +2,13 @@
 # You should change the shebang to `#!/usr/bin/env zsh` if you want to run this script in a different environment.
 
 set -e  # Exit immediately if a command exits with a non-zero status
+if [ "$(id -u)" -eq 0 ]; then
+  SUDO=""
+  SUDO_E=""
+else
+  SUDO="sudo"
+  SUDO_E="sudo -E"
+fi
 
 # ----------------------------------------
 # Copy nvim directory to config 
@@ -32,14 +39,14 @@ rm nvim-linux-x86_64.tar.gz
 # ----------------------------------------
 
 echo "Linking nvim to default editor and vim using update-alternatives..."
-sudo update-alternatives --install /usr/bin/editor editor $(pwd)/nvim-linux-x86_64/bin/nvim 100
-sudo update-alternatives --install /usr/bin/vim vim $(pwd)/nvim-linux-x86_64/bin/nvim 100
+$SUDO update-alternatives --install /usr/bin/editor editor $(pwd)/nvim-linux-x86_64/bin/nvim 100
+$SUDO update-alternatives --install /usr/bin/vim vim $(pwd)/nvim-linux-x86_64/bin/nvim 100
 
 echo "Select default editor manually:"
-sudo update-alternatives --config editor
+$SUDO update-alternatives --config editor
 
 echo "Select default vim manually:"
-sudo update-alternatives --config vim
+$SUDO update-alternatives --config vim
 
 # ----------------------------------------
 # Clone Neovim config (assuming GitHub repo exists)
@@ -62,14 +69,14 @@ if command -v node >/dev/null; then
     node_version=$(node -v | cut -d'v' -f2 | cut -d. -f1)
     if [ "$node_version" -lt 22 ]; then
         echo "Old Node.js detected. Removing..."
-        sudo apt remove -y nodejs npm
+        $SUDO apt remove -y nodejs npm
     fi
 fi
 
 if ! command -v node >/dev/null || [ "$(node -v | cut -d'v' -f2 | cut -d. -f1)" -lt 22 ]; then
     echo "Installing Node.js v22..."
-    curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-    sudo apt install -y nodejs
+    curl -fsSL https://deb.nodesource.com/setup_22.x | $SUDO_E bash -
+    $SUDO apt install -y nodejs
 fi
 
 
@@ -111,7 +118,7 @@ fi
 # ----------------------------------------
 
 echo "Installing Mason packages in Neovim..."
-$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "MasonInstall lua-language-server bash-language-server cmake-language-server clang clangd json-lsp pyright pyright-langserver" +qa
+$(pwd)/nvim-linux-x86_64/bin/nvim --headless -c "MasonInstall lua-language-server bash-language-server cmake-language-server clangd json-lsp pyright" +qa
 
 # echo "Launching Neovim for Copilot authentication..."
 # nvim "+Copilot auth" +qa

@@ -1,17 +1,23 @@
 #!/bin/bash
 
+if [ "$(id -u)" -eq 0 ]; then
+  SUDO=""
+else
+  SUDO="sudo"
+fi
+
 ### update package
-sudo apt-get update
-sudo apt-get -y upgrade
+$SUDO apt-get update
+$SUDO apt-get -y upgrade
 
 ### install zsh
-sudo apt-get install -y zsh
-sudo apt install -y curl
-sudo apt install ripgrep
-sudo apt install unzip
+$SUDO apt-get install -y zsh
+$SUDO apt install -y curl
+$SUDO apt install ripgrep
+$SUDO apt install unzip
 
 ### tmux conf setting
-sudo apt-get install -y tmux
+$SUDO apt-get install -y tmux
 cp ~/.init-setting/.tmux.conf ~/.tmux.conf
 tmux source-file ~/.tmux.conf
 
