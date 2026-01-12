@@ -91,14 +91,14 @@ export CXX="clang++"
 
 export PATH="/usr/lib/ccache:/usr/local/cuda/bin:$HOME/.local/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-export LLVM_SYMBOLIZER_PATH="/$HOME/workspace/llvm-project/bin/llvm-symbolizer"
+export LLVM_SYMBOLIZER_PATH="/install/llvm-project/bin/llvm-symbolizer"
 export CMAKE_GENERATOR=Ninja
 
 export GEMINI_API_KEY=""
 
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="$HOME/.init-setting/nvim-linux-x86_64/bin/nvim"
+export VISUAL="$HOME/.init-setting/nvim-linux-x86_64/bin/nvim"
 alias gemini="$HOME/.local/lib/gemini-cli/node_modules/.bin/gemini"
 # export HECATE="/home/seonyoung/workspace/hecate"
 # User configuration
