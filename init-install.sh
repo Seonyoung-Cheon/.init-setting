@@ -13,6 +13,8 @@ $SUDO apt-get -y upgrade
 ### install zsh
 $SUDO apt-get install -y zsh
 $SUDO apt install -y curl
+$SUDO apt install -y wget 
+$SUDO apt install -y clangd
 $SUDO apt install ripgrep
 $SUDO apt install unzip
 
