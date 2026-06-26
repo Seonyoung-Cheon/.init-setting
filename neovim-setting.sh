@@ -96,7 +96,7 @@ fi
 
 if ! pip show cmakelang > /dev/null 2>&1; then
     echo "Installing cmakelang via pip..."
-    pip install cmakelang
+    pipx install cmakelang
 else
     echo "cmakelang already installed."
 fi
@@ -107,7 +107,7 @@ fi
 
 if ! pip show mypy > /dev/null 2>&1; then
     echo "Installing cmakelang via pip..."
-    pip install mypy
+    pipx install mypy
 else
     echo "cmakelang already installed."
 fi
