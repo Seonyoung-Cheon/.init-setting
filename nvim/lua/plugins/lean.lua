@@ -8,8 +8,10 @@ return {
       -- "andrewradev/switch.vim",
       -- "tomtom/tcomment_vim",
     },
-    opts = {
-      mappings = true,
-    },
+    init = function()
+      vim.g.lean_config = {
+        mappings = true,
+      }
+    end,
   },
 }

@@ -28,7 +28,8 @@ cp -r ./nvim ~/.config/nvim
 # ----------------------------------------
 
 echo "Downloading Neovim..."
-wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz
+# wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz
+wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 
 echo "Extracting Neovim..."
 tar -xvf nvim-linux-x86_64.tar.gz

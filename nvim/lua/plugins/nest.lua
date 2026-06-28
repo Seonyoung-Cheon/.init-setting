@@ -101,7 +101,7 @@ return {
 						"<cmd>Trouble qflist toggle<cr>",
 					},
 					{ "d", "<cmd>TodoTrouble<CR>" },
-					{ "r", require("telescope").extensions.refactoring.refactors, mode = "nvo" },
+					-- { "r", require("telescope").extensions.refactoring.refactors, mode = "nvo" },
 					{ "s", vim.lsp.buf.signature_help },
 					{ "t", vim.lsp.buf.type_definition },
 					{ "o", "<cmd>Trouble symbols toggle win.position=left focus=true<cr>" },
